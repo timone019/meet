@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/timone019/meet.git/static/css/main.f855e6bc.css",
+    "main.js": "/timone019/meet.git/static/js/main.96461162.js",
+    "static/js/592.b7cdff91.chunk.js": "/timone019/meet.git/static/js/592.b7cdff91.chunk.js",
+    "service-worker.js": "/timone019/meet.git/service-worker.js",
+    "static/media/logo.svg": "/timone019/meet.git/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
+    "index.html": "/timone019/meet.git/index.html",
+    "main.f855e6bc.css.map": "/timone019/meet.git/static/css/main.f855e6bc.css.map",
+    "main.96461162.js.map": "/timone019/meet.git/static/js/main.96461162.js.map",
+    "592.b7cdff91.chunk.js.map": "/timone019/meet.git/static/js/592.b7cdff91.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.96461162.js"
+  ]
+}
