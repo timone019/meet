@@ -2,6 +2,8 @@
 
 This project is a **Serverless Progressive Web Application (PWA)** built with **React** and developed using a **Test-Driven Development (TDD)** technique.
 
+In the Meet app, serverless functions will be used to handle requests and responses with the Google Calendar API. When a user wants to view upcoming events, a serverless function will be triggered to fetch this data from the API. This approach allows the Meet app to scale automatically based on demand, as serverless functions run only when they're needed. This means the app can handle a large number of requests during peak times and no resources are wasted when demand is low. Additionally, serverless architecture can help reduce costs and simplify operations, as you don't need to manage any server infrastructure.
+
 ## Key Features
 
 - **Serverless:** This means the application can scale automatically and you only pay for what you use.
