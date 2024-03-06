@@ -1,10 +1,11 @@
 // src/__tests__/Event.test.js
 
-import { render } from "@testing-library/react";
-import Event from "../components/Event";
-import { getEvents } from "../api";
 import userEvent from "@testing-library/user-event";
+import { getEvents } from "../api";
+import { render } from "@testing-library/react";
 import { waitFor } from "@testing-library/react";
+
+import Event from "../components/Event";
 
 describe("<Event /> component", () => {
   let EventComponent;
@@ -24,10 +25,10 @@ describe("<Event /> component", () => {
     ).toBeInTheDocument();
   });
 
-  test("renders event start time", () => {
+  test("renders event created date", () => {
+    const createdDate = new Date(allEvents[0].created).toUTCString();
     expect(
-      EventComponent.queryByText(allEvents[0].created)
-    ).toBeInTheDocument();
+      EventComponent.queryByText(createdDate)).toBeInTheDocument();
   });
 
   test("renders event location", () => {

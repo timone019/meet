@@ -22,6 +22,12 @@ describe("<App /> component", () => {
     expect(AppDOM.querySelector("#number-of-events")).toBeInTheDocument();
   });
 
+  test("getEvents returns a list of events", async () => {
+    const events = await getEvents();
+    expect(Array.isArray(events)).toBe(true);
+    expect(events.length).toBeGreaterThan(0);
+  });
+  
   describe("<App /> integration", () => {});
 
   test("renders a list of events matching the city selected by the user", async () => {
@@ -46,9 +52,10 @@ describe("<App /> component", () => {
       (event) => event.location === "Berlin, Germany"
     );
 
-    expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+    expect(allRenderedEventItems.length).toBe(berlinEvents.length);  // Check if the correct number of events are being rendered
+    
     allRenderedEventItems.forEach(event => {
-      expect(event.textContent).toContain("Berlin, Germany");
+      expect(event.textContent).toContain("Berlin, Germany"); // Check if the correct events are being rendered
     });
   });
 });

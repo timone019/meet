@@ -23,19 +23,10 @@ describe("<EventList /> component", () => {
 expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
   });
 
-// test('renders event', () => {
-//   EventListComponent.rerender(<EventList events={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4}]} />);
-//   expect(EventListComponent.queryByText(allEvents(0).location)).toBeInTheDocument();
-// });
-
-
 });
 
 // integration testing
 describe('<EventList /> integration', () => {
-
-});
-
 test('renders a list of 32 events when the app is mounted and rendered', async () => {
   const AppComponent = render(<App />);
   const AppDOM = AppComponent.container.firstChild;
@@ -44,5 +35,6 @@ test('renders a list of 32 events when the app is mounted and rendered', async (
     const EventListItems = within(EventListDOM).queryAllByRole('listitem');
     expect(EventListItems.length).toBeGreaterThan(0);
   });
+});
 
 });

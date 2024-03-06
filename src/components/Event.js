@@ -7,15 +7,15 @@ const Event = ({ event }) => {
     return (
       <li
       className="event">
-        <h2>{event.summary}</h2>
-      <p>{event.location}</p>
-      <p>{event.created}</p>
-      <p>{event.endTime}</p>
-      <p>{event.description}</p>
+        <h2>{event?.summary}</h2>
+      <p>{event?.location}</p>
+      <p>{event?.created && (new Date(event.created)).toUTCString()}</p>
+      <p>{event?.endTime}</p>
+      {showDetails && <p>{event?.description}</p>}
       <button className="details-btn" onClick={() => setShowDetails(!showDetails)}>
         {showDetails ? "Hide details" : "Show details"}
       </button>
-      {showDetails && <p className="details">{event.details}</p>}
+      {showDetails && <p className="details">{event?.details}</p>}
       </li>
     );
   }

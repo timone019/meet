@@ -10,10 +10,10 @@ describe("<NumberOfEvents /> component", () => {
         NumberOfEventsComponent = render(<NumberOfEvents />);
     });
     test("renders text input", () => {
-        expect(NumberOfEventsComponent.queryByPlaceholderText("Enter number of events")).toBeInTheDocument();
+        expect(NumberOfEventsComponent.queryByRole("spinbutton")).toBeInTheDocument();
     })
     test("renders input field correctly", () => {
-        const input = NumberOfEventsComponent.queryByPlaceholderText("Enter number of events");
+        const input = NumberOfEventsComponent.queryByRole("spinbutton");
         expect(input).toBeInTheDocument();
         expect(input.placeholder).toBe("Enter number of events");
         expect(input.type).toBe("number");
@@ -22,8 +22,17 @@ describe("<NumberOfEvents /> component", () => {
     })
 
     test("changes value when number is entered", async () => {
-        const input = NumberOfEventsComponent.queryByPlaceholderText("Enter number of events");
+        let input = NumberOfEventsComponent.queryByRole("spinbutton");
         await userEvent.type(input, '{backspace}{backspace}10');
+        input = NumberOfEventsComponent.queryByRole("spinbutton");
         expect(input.value).toBe('10');
-    })
+    });
+
+    test("handles value outside of range", async () => {
+        let input = NumberOfEventsComponent.queryByRole("spinbutton");
+        await userEvent.type(input, '{backspace}{backspace}100');
+        input = NumberOfEventsComponent.queryByRole("spinbutton");
+        expect(input.value).toBe('100'); // or whatever your expected behavior is
+    });
+
 })
