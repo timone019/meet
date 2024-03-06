@@ -1,6 +1,5 @@
 //src/components/Event.js
 
-import React from "react";
 import { useState } from "react";
 const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);

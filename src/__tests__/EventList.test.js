@@ -1,14 +1,17 @@
 // src/__tests__/EventList.test.js
 
-import { render } from "@testing-library/react";
-import EventList from "../components/EventList";
+import { render, within, waitFor } from "@testing-library/react";
 import { getEvents } from "../api";
+import EventList from "../components/EventList";
+import App from "../App";
 
 describe("<EventList /> component", () => {
   let EventListComponent;
   beforeEach(() => {
     EventListComponent = render(<EventList />);
   })
+
+  
   test('has an element with "list" role', () => {
     expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
   });
@@ -25,5 +28,21 @@ expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.lengt
 //   expect(EventListComponent.queryByText(allEvents(0).location)).toBeInTheDocument();
 // });
 
+
+});
+
+// integration testing
+describe('<EventList /> integration', () => {
+
+});
+
+test('renders a list of 32 events when the app is mounted and rendered', async () => {
+  const AppComponent = render(<App />);
+  const AppDOM = AppComponent.container.firstChild;
+  const EventListDOM = AppDOM.querySelector('#event-list');
+  await waitFor(() => {
+    const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+    expect(EventListItems.length).toBeGreaterThan(0);
+  });
 
 });
