@@ -96,4 +96,48 @@ describe("<CitySearch /> component", () => {
       within(CitySearchDOM).queryAllByRole("listitem");
     expect(suggestionListItems.length).toBe(allLocations.length + 1);
   });
+
+  test("renders a list with only 'See all cities' when user types a city that doesn't exist", async () => {
+    const user = userEvent.setup();
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+  
+    const cityTextBox = CitySearchComponent.queryByRole("textbox");
+    await user.type(cityTextBox, "Paris, France");
+  
+    const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
+    expect(suggestionListItems).toHaveLength(1);
+    expect(suggestionListItems[0].textContent).toBe("See all cities");
+  });
+
+  test("renders a list with matching cities when user types a city that exists", async () => {
+    const user = userEvent.setup();
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+  
+    const cityTextBox = CitySearchComponent.queryByRole("textbox");
+    await user.type(cityTextBox, "Berlin");
+  
+    const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
+    expect(suggestionListItems).toHaveLength(2); // Adjust this based on how many matches you expect
+    expect(suggestionListItems[0].textContent).toBe("Berlin, Germany");
+    expect(suggestionListItems[1].textContent).toBe("See all cities");
+  });
+
+  test("renders an empty list when allLocations is falsy", async () => {
+    const user = userEvent.setup();
+    CitySearchComponent.rerender(<CitySearch allLocations={null} />);
+  
+    const cityTextBox = CitySearchComponent.queryByRole("textbox");
+    await user.type(cityTextBox, "Berlin");
+  
+    const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
+    expect(suggestionListItems).toHaveLength(1);
+    expect(suggestionListItems[0].textContent).toBe("See all cities");
+  });
+  
+
 });
+

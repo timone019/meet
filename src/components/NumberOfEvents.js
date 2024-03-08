@@ -3,7 +3,7 @@
 import { useState } from "react";
 import EventList from "./EventList";
 
-const NumberOfEvents = ({}) => {
+const NumberOfEvents = () => {
   const [numberOfEvents, setNumberOfEvents] = useState(32);
 
   const handleInputChanged = (event) => {
