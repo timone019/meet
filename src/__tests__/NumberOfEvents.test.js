@@ -6,8 +6,9 @@ import NumberOfEvents from "../components/NumberOfEvents";
 
 describe("<NumberOfEvents /> component", () => {
     let NumberOfEventsComponent;
+    const mockSetCurrentNOE = jest.fn(); // Create a mock function
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={mockSetCurrentNOE} currentNOE={0} />);
     });
     test("renders text input", () => {
         expect(NumberOfEventsComponent.queryByRole("spinbutton")).toBeInTheDocument();
@@ -34,5 +35,11 @@ describe("<NumberOfEvents /> component", () => {
         input = NumberOfEventsComponent.queryByRole("spinbutton");
         expect(input.value).toBe('100'); // or whatever your expected behavior is
     });
+    test("calls setCurrentNOE when number is entered", async () => {
+        let input = NumberOfEventsComponent.queryByRole("spinbutton");
+        await userEvent.type(input, '{backspace}{backspace}10');
+        expect(mockSetCurrentNOE).toHaveBeenCalledWith(10); // Check that the mock function was called with the correct argument
+      });
+
 
 })
