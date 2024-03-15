@@ -14,14 +14,20 @@ const App = () => {
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
 
- 
   const fetchData = async () => {
     const allEvents = await getEvents();
     const filteredEvents =
       currentCity === "See all cities"
         ? allEvents
         : allEvents.filter((event) => event.location === currentCity);
-    setEvents(filteredEvents.slice(0, isNaN(currentNOE) ? 32 : currentNOE));
+    setEvents(
+      filteredEvents.slice(
+        0,
+        currentNOE !== null && currentNOE !== undefined ? currentNOE : 32
+      )
+    );
+    // setEvents(filteredEvents.slice(0, currentNOE || 32));
+    // setEvents(filteredEvents.slice(0, isNaN(currentNOE) ? 32 : currentNOE));
     setAllLocations(extractLocations(allEvents));
   };
 

@@ -37,6 +37,12 @@ describe("<Event /> component", () => {
     ).toBeInTheDocument();
   });
 
+  test('renders event end time', () => {
+    const date = new Date(allEvents[0].end.dateTime);
+    const formattedDate = date.toUTCString();
+    expect(EventComponent.getByText(formattedDate)).toBeInTheDocument();
+  });
+
   test("by default, event's details section should be hidden", () => {
     expect(
       EventComponent.container.querySelector(".details")
@@ -61,4 +67,19 @@ describe("<Event /> component", () => {
       expect(EventComponent.queryByText("Hide details")).toBeInTheDocument();
     });
   });
-});
+
+    test('renders event details when show details button is clicked', async () => {
+      const button = EventComponent.getByText('Show details');
+      userEvent.click(button);
+      await waitFor(() => {
+        expect(EventComponent.getByText((content, node) => {
+          const hasText = (node) => node.textContent === allEvents[0].description;
+          const nodeHasText = hasText(node);
+          const childrenDontHaveText = Array.from(node.children).every(
+            (child) => !hasText(child)
+          );
+          return nodeHasText && childrenDontHaveText;
+        })).toBeInTheDocument();
+      });
+    });
+  });

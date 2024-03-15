@@ -1,19 +1,19 @@
 //src/components/NumberOfEvent.js
 
 import { useState } from "react";
+import PropTypes from "prop-types";
 // import EventList from "./EventList";
 
-const NumberOfEvents = ({ currentNOE = 0, setCurrentNOE }) => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
   const [numberOfEvents, setNumberOfEvents] = useState(currentNOE);
 
   const handleInputChanged = (event) => {
     const value = Number(event.target.value);
-    if (isNaN(value)) {
-       // The user has entered an invalid number, so we don't update the state
-      return;
+    if (value >= 1 && value <= 32) {
+      setNumberOfEvents(value);
+      setCurrentNOE(value);
+    } else {
     }
-    setCurrentNOE(value);
-    setNumberOfEvents(value);
   };
 
   return (
@@ -36,4 +36,10 @@ const NumberOfEvents = ({ currentNOE = 0, setCurrentNOE }) => {
   );
 };
 
+NumberOfEvents.propTypes = {
+  currentNOE: PropTypes.number.isRequired,
+  setCurrentNOE: PropTypes.func.isRequired,
+};
+
 export default NumberOfEvents;
+
