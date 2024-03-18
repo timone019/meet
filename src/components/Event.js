@@ -1,6 +1,8 @@
 //src/components/Event.js
 
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
  
@@ -18,5 +20,17 @@ const Event = ({ event }) => {
       </li>
     );
   }
+
+  Event.propTypes = {
+    event: PropTypes.shape({
+      summary: PropTypes.string,
+      location: PropTypes.string,
+      created: PropTypes.string,
+      end: PropTypes.shape({
+        dateTime: PropTypes.string,
+      }),
+      description: PropTypes.string,
+    }).isRequired,
+  };
   
   export default Event;

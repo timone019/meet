@@ -7,9 +7,13 @@ import CitySearch from "../components/CitySearch";
 import App from "../App";
 
 describe("<CitySearch /> component", () => {
+  let mockAllLocations;
   let CitySearchComponent;
+  let mockSetCurrentCity = jest.fn();
+
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch allLocations={[]} />);
+    mockAllLocations = ["Berlin", "London"];
+    CitySearchComponent = render(<CitySearch allLocations={mockAllLocations} setCurrentCity={mockSetCurrentCity} />);
   });
   test("renders text input", () => {
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
@@ -35,7 +39,7 @@ describe("<CitySearch /> component", () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={mockSetCurrentCity} />);
 
     // user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
@@ -63,7 +67,7 @@ describe("<CitySearch /> component", () => {
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
     CitySearchComponent.rerender(
-      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+      <CitySearch allLocations={allLocations} setCurrentCity={mockSetCurrentCity} />
     );
 
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
@@ -101,7 +105,7 @@ describe("<CitySearch /> component", () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={mockSetCurrentCity}/>);
   
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     await user.type(cityTextBox, "Paris, France");
@@ -115,7 +119,7 @@ describe("<CitySearch /> component", () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={mockSetCurrentCity}/>);
   
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     await user.type(cityTextBox, "Berlin");
@@ -128,7 +132,7 @@ describe("<CitySearch /> component", () => {
 
   test("renders an empty list when allLocations is falsy", async () => {
     const user = userEvent.setup();
-    CitySearchComponent.rerender(<CitySearch allLocations={null} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={[]} setCurrentCity={mockSetCurrentCity} />);
   
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     await user.type(cityTextBox, "Berlin");

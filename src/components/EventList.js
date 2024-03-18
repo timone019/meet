@@ -1,4 +1,5 @@
 import Event from "./Event";
+import PropTypes from "prop-types";
 
 const EventList = ({ events }) => {
   return (
@@ -8,5 +9,11 @@ const EventList = ({ events }) => {
     </ul>
   );
 }
+
+EventList.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,  
+  })).isRequired,
+};
 
 export default EventList;

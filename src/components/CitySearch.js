@@ -1,6 +1,7 @@
 // src/components/CitySearch.js
 
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 const CitySearch = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
@@ -54,4 +55,8 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
   );
 };
 
+CitySearch.propTypes = {
+  allLocations: PropTypes.array.isRequired,
+  setCurrentCity: PropTypes.func.isRequired,
+};
 export default CitySearch;

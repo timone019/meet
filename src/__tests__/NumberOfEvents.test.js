@@ -37,7 +37,6 @@ describe("<NumberOfEvents /> component", () => {
   test("handles value outside of range", async () => {
     let input = NumberOfEventsComponent.queryByRole("spinbutton");
     await userEvent.type(input, "100");
-    input = NumberOfEventsComponent.queryByRole("spinbutton");
     expect(input.value).toBe("10"); 
     expect(mockSetCurrentNOE).not.toHaveBeenCalled();
   });
@@ -50,8 +49,7 @@ describe("<NumberOfEvents /> component", () => {
 
   test("does not update state with invalid input", async () => {
     let input = NumberOfEventsComponent.getByRole("spinbutton");
-    await userEvent.clear(input);
-    await userEvent.type(input, "abc");
+    await userEvent.type(input, '{selectall}abc');
     expect(mockSetCurrentNOE).not.toHaveBeenCalled();
   });
 

@@ -7,8 +7,11 @@ import App from "../App";
 
 describe("<EventList /> component", () => {
   let EventListComponent;
-  beforeEach(() => {
-    EventListComponent = render(<EventList />);
+  let allEvents;
+
+  beforeEach(async () => {
+    allEvents = await getEvents();
+    EventListComponent = render(<EventList events={allEvents} />);
   })
 
   
