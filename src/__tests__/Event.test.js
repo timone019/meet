@@ -26,7 +26,7 @@ describe("<Event /> component", () => {
   });
 
   test("renders event created date", () => {
-    const createdDate = new Date(allEvents[0].created).toUTCString();
+    const createdDate = new Date(allEvents[0].created).toLocaleDateString();
     expect(
       EventComponent.queryByText(createdDate)).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe("<Event /> component", () => {
 
   test('renders event end time', () => {
     const date = new Date(allEvents[0].end.dateTime);
-    const formattedDate = date.toUTCString();
+    const formattedDate = date.toLocaleDateString();
     expect(EventComponent.getByText(formattedDate)).toBeInTheDocument();
   });
 
