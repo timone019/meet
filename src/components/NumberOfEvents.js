@@ -9,7 +9,7 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
 
   const handleInputChanged = (event) => {
     const value = Number(event.target.value);
-    if (value >= 1 && value <= 32) {
+    if (value >= 0 && value <= 32) {
       setNumberOfEvents(value);
       setCurrentNOE(value);
     } else {
@@ -24,7 +24,7 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
         id="number-of-events-input"
         placeholder="Enter number of events"
         value={numberOfEvents}
-        min="1"
+        min="0"
         max="32"
         className="number-of-events"
         onChange={handleInputChanged}
