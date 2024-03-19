@@ -12,15 +12,18 @@ const Event = ({ event }) => {
       <p>{event?.location}</p>
       <p>{event?.created && new Date(event.created).toLocaleDateString()}</p>
       <p>
-      {event?.start?.dateTime && (new Date(event.start.dateTime)).toLocaleTimeString()} - 
-        {event?.end?.dateTime && (new Date(event.end.dateTime)).toLocaleTimeString()}
+        {event?.start?.dateTime &&
+          new Date(event.start.dateTime).toLocaleTimeString()} {" "}
+        - {" "}
+        {event?.end?.dateTime &&
+          new Date(event.end.dateTime).toLocaleTimeString()}
       </p>
       {showDetails && (
         <>
-        <h4>Event Details</h4>
-      
-      <p className="details">{event?.description}</p>
-      </>
+          <h4>Event Details</h4>
+
+          <p className="details">{event?.description}</p>
+        </>
       )}
       <button
         className="details-btn"
