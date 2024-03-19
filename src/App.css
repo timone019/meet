@@ -88,4 +88,11 @@ input[type="number"] {
   outline: none;
   cursor: pointer;
   background-color: rgb(235, 199, 235);
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+}
+
+.details-btn:hover {
+  background-color: rgb(255, 199, 235);
 }
