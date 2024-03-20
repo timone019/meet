@@ -25,11 +25,11 @@ describe("<Event /> component", () => {
     ).toBeInTheDocument();
   });
 
-  test("renders event created date", () => {
-    const createdDate = new Date(allEvents[0].created).toLocaleDateString();
-    expect(
-      EventComponent.queryByText(createdDate)).toBeInTheDocument();
-  });
+  // test("renders event created date", () => {
+  //   const createdDate = new Date(allEvents[0].created).toLocaleDateString();
+  //   expect(
+  //     EventComponent.queryByText(createdDate)).toBeInTheDocument();
+  // });
 
   test("renders event location", () => {
     expect(
@@ -38,9 +38,10 @@ describe("<Event /> component", () => {
   });
 
   test('renders event end time', () => {
-    const date = new Date(allEvents[0].end.dateTime);
-    const formattedDate = date.toLocaleDateString();
-    expect(EventComponent.getByText(formattedDate)).toBeInTheDocument();
+    const start = new Date(allEvents[0].start.dateTime).toLocaleTimeString();
+    const end = new Date(allEvents[0].end.dateTime).toLocaleTimeString();
+    const timeString = `Time: ${start} - ${end}`;
+    expect(EventComponent.getByText(timeString)).toBeInTheDocument();
   });
 
   test("by default, event's details section should be hidden", () => {

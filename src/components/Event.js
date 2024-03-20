@@ -5,19 +5,16 @@ import PropTypes from "prop-types";
 
 const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const start = event?.start?.dateTime && new Date(event.start.dateTime).toLocaleTimeString();
+  const end = event?.end?.dateTime && new Date(event.end.dateTime).toLocaleTimeString();
+  const startDate = event?.created && new Date(event.created).toLocaleDateString();
 
   return (
     <li className="event">
       <h2>{event?.summary}</h2>
       <p>{event?.location}</p>
-      <p>{event?.created && new Date(event.created).toLocaleDateString()}</p>
-      <p>
-        {event?.start?.dateTime &&
-          new Date(event.start.dateTime).toLocaleTimeString()} {" "}
-        - {" "}
-        {event?.end?.dateTime &&
-          new Date(event.end.dateTime).toLocaleTimeString()}
-      </p>
+      <p>Date: {startDate}</p>
+      <p>Time: {start} - {end}</p>
       {showDetails && (
         <>
           <h4>Event Details</h4>
