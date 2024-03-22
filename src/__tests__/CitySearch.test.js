@@ -1,6 +1,6 @@
 // src/__tests__/CitySearch.test.js
 
-import { render, within } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import { extractLocations, getEvents } from "../api";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
@@ -12,7 +12,7 @@ describe("<CitySearch /> component", () => {
   let mockSetCurrentCity = jest.fn();
 
   beforeEach(() => {
-    mockAllLocations = ["Berlin", "London"];
+    mockAllLocations = ["Berlin, Germany", "London, UK"];
     CitySearchComponent = render(<CitySearch allLocations={mockAllLocations} setCurrentCity={mockSetCurrentCity} />);
   });
   test("renders text input", () => {
@@ -142,6 +142,34 @@ describe("<CitySearch /> component", () => {
     expect(suggestionListItems[0].textContent).toBe("See all cities");
   });
   
+  test("calls setCurrentCity with the correct argument when a suggestion is clicked", async () => {
+    const user = userEvent.setup();
+    const suggestionToClick = "Berlin, Germany";
+    const cityTextBox = CitySearchComponent.queryByRole("textbox");
+    await user.type(cityTextBox, "Berlin");
+    await waitFor(() => CitySearchComponent.getByText(suggestionToClick)); // Wait for the suggestion to appear
+    const suggestion = CitySearchComponent.getByText(suggestionToClick);
+    await user.click(suggestion);
+    expect(mockSetCurrentCity).toHaveBeenCalledWith(suggestionToClick);
+  });
+
+  // test("hides the suggestions list when the textbox loses focus", async () => {
+  //   const user = userEvent.setup();
+  //   const cityTextBox = CitySearchComponent.queryByRole("textbox");
+  //   await user.click(cityTextBox); // to gain focus
+  //   await user.tab(); // to lose focus
+  //   // Add a delay to ensure any asynchronous operations have completed
+  //   await new Promise((r) => setTimeout(r, 1000));
+  //   const suggestionList = CitySearchComponent.queryByRole("list");
+  //   expect(suggestionList).not.toBeInTheDocument();
+  // });
+
+  // test("updates the suggestions list when the allLocations prop changes", async () => {
+  //   const newAllLocations = ["Paris", "New York"];
+  //   CitySearchComponent.rerender(<CitySearch allLocations={newAllLocations} setCurrentCity={mockSetCurrentCity} />);
+  //   const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
+  //   expect(suggestionListItems).toHaveLength(newAllLocations.length + 1);
+  // });
 
 });
 
