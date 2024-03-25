@@ -8,6 +8,13 @@ const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
 defineFeature(feature, test => {
 
+  let AppComponent, CitySearchDOM;
+  beforeEach(() => {
+    // eslint-disable-next-line testing-library/no-render-in-setup
+    AppComponent = render(<App />);
+  
+  });
+
   // Scenario 1
   test("When user hasn’t searched for a city, show upcoming events from all cities.", ({
     given,
@@ -16,9 +23,8 @@ defineFeature(feature, test => {
   }) => {
     given("user hasn’t searched for any city", () => {});
 
-    let AppComponent;
     when("the user opens the app", () => {
-      AppComponent = render(<App />);
+      // AppComponent = render(<App />);
     });
 
     then("the user should see the list of all upcoming events.", async () => {
@@ -38,12 +44,12 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    // let AppComponent;
     given("the main page is open", () => {
-      AppComponent = render(<App />);
+      // AppComponent = render(<App />);
     });
 
-    let CitySearchDOM;
+    // let CitySearchDOM;
     when("user starts typing in the city textbox", async () => {
       const user = userEvent.setup();
       const AppDOM = AppComponent.container.firstChild;
@@ -68,12 +74,12 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    // let AppComponent;
     let AppDOM;
-    let CitySearchDOM;
+    // let CitySearchDOM;
     let citySearchInput;
     given("user was typing “Berlin” in the city textbox", async () => {
-        AppComponent = render(<App />);
+        // AppComponent = render(<App />);
         const user = userEvent.setup();
         AppDOM = AppComponent.container.firstChild;
         CitySearchDOM = AppDOM.querySelector("#city-search");
