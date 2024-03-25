@@ -6,7 +6,7 @@ Feature: Show/Hide Event Details
 
   Scenario: User can expand an event to see details
     Given a list of events is displayed
-    When the user clicks on an event
+    When the user clicks on an event show details button
     Then the event details should be shown
   
   Scenario: User can collapse an event to hide details

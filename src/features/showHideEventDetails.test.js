@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { render, fireEvent, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import App from "../App";
 import { getEvents } from "../api";
 
@@ -7,8 +8,10 @@ const feature = loadFeature("./src/features/showHideEventDetails.feature");
 
 defineFeature(feature, (test) => {
   let AppComponent;
-  beforeEach(() => {
-    AppComponent = render(<App />);
+  beforeEach(async () => {
+    await act(async () => {
+      AppComponent = render(<App />);
+    });
   });
 
   // Scenario 1
@@ -22,7 +25,6 @@ defineFeature(feature, (test) => {
       // await waitFor(() => {
       //   // Get all the event elements
       //   const eventElements = AppComponent.getAllByTestId("event");
-
       //   // Check that the details of each event are not visible
       //   eventElements.forEach((eventElement) => {
       //     const eventDetails = within(eventElement).queryByTestId("event-details");
@@ -34,16 +36,39 @@ defineFeature(feature, (test) => {
 
   // Scenario 2
   test("User can expand an event to see details", ({ given, when, then }) => {
+    let EventComponent;
     given("a list of events is displayed", () => {
-      // Implement the setup logic to display a list of events
+      // The setup logic to display a list of events is already handled by the beforeEach block
     });
 
-    when("the user clicks on an event", () => {
+    when("the user clicks on an event show details button", async () => {
+      // Wait for the events to be loaded and rendered
+      await waitFor(async() => {
+      //   console.log(AppComponent.container.children);
+
+        // Get the third child of the container (EventList)
+        const eventList = await AppComponent.container.querySelector("#event-list");
+
+        // Check that the event list is not undefined
+        expect(eventList).not.toBeUndefined();
+
+        // Get the first event element
+        EventComponent = eventList.firstChild;
+      });
       // Simulate user clicking on an event
+      const button = EventComponent.querySelector(".details-btn");
+      await fireEvent.click(button);
     });
 
-    then("the event details should be shown", () => {
-      // Implement the assertion logic to check if event details are shown
+    then("the event details should be shown", async () => {
+      // Wait for the event details to be displayed
+      await waitFor(() => {
+        // Get the event details
+        const eventDetails = EventComponent.lastChild;
+
+        // Check that the event details are visible
+        expect(eventDetails).not.toHaveAttribute("hidden");
+      });
     });
   });
 
