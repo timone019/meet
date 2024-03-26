@@ -2,7 +2,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import App from "../App";
-import { getEvents } from "../api";
 
 const feature = loadFeature("./src/features/showHideEventDetails.feature");
 
@@ -13,7 +12,6 @@ defineFeature(feature, (test) => {
       AppComponent = render(<App />);
     });
   });
-
   // Scenario 1
   test("An event element is collapsed by default", ({ given, then }) => {
     given("a list of events is displayed", () => {
@@ -22,15 +20,15 @@ defineFeature(feature, (test) => {
 
     then("each event element should be collapsed by default", async () => {
       // Wait for the events to be displayed
-      // await waitFor(() => {
-      //   // Get all the event elements
-      //   const eventElements = AppComponent.getAllByTestId("event");
-      //   // Check that the details of each event are not visible
-      //   eventElements.forEach((eventElement) => {
-      //     const eventDetails = within(eventElement).queryByTestId("event-details");
-      //     expect(eventDetails).not.toBeInTheDocument();
-      //   });
-      // });
+      await waitFor(() => {
+        // Get all the event elements
+        const eventElements = AppComponent.container.querySelectorAll(".event");
+        // Check that the details of each event are not visible
+        eventElements.forEach((eventElement) => {
+          const eventDetails = eventElement.querySelector(".details");
+          expect(eventDetails).not.toBeInTheDocument();
+        });
+      });
     });
   });
 
@@ -47,7 +45,7 @@ defineFeature(feature, (test) => {
       //   console.log(AppComponent.container.children);
 
         // Get the third child of the container (EventList)
-        const eventList = await AppComponent.container.querySelector("#event-list");
+        const eventList = AppComponent.container.querySelector("#event-list");
 
         // Check that the event list is not undefined
         expect(eventList).not.toBeUndefined();
@@ -57,7 +55,7 @@ defineFeature(feature, (test) => {
       });
       // Simulate user clicking on an event
       const button = EventComponent.querySelector(".details-btn");
-      await fireEvent.click(button);
+      fireEvent.click(button);
     });
 
     then("the event details should be shown", async () => {
