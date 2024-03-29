@@ -4,7 +4,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 // import EventList from "./EventList";
 
-const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
   const [numberOfEvents, setNumberOfEvents] = useState(currentNOE);
 
   const handleInputChanged = (event) => {
@@ -14,6 +14,14 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
       setCurrentNOE(value);
     } else {
     }
+
+    let errorText;
+    if (isNaN(value) || value <= 0) {
+      errorText = "Only Positive Numbers are allowed."} else {
+        errorText = ""
+    }
+    setErrorAlert(errorText);
+
   };
 
   return (

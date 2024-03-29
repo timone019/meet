@@ -10,7 +10,11 @@ describe("<NumberOfEvents /> component", () => {
   beforeEach(() => {
     mockSetCurrentNOE.mockClear(); // Reset the mock function
     NumberOfEventsComponent = render(
-      <NumberOfEvents setCurrentNOE={mockSetCurrentNOE} currentNOE={10} />
+      <NumberOfEvents
+        setCurrentNOE={mockSetCurrentNOE}
+        currentNOE={10}
+        setErrorAlert={() => {}}
+      />
     );
   });
   test("renders text input", () => {
@@ -37,19 +41,19 @@ describe("<NumberOfEvents /> component", () => {
   test("handles value outside of range", async () => {
     let input = NumberOfEventsComponent.queryByRole("spinbutton");
     await userEvent.type(input, "100");
-    expect(input.value).toBe("10"); 
+    expect(input.value).toBe("10");
     expect(mockSetCurrentNOE).not.toHaveBeenCalled();
   });
   test("calls setCurrentNOE when number is entered", async () => {
     const input = NumberOfEventsComponent.getByRole("spinbutton");
-    fireEvent.change(input, { target: { value: '15' } });
+    fireEvent.change(input, { target: { value: "15" } });
     await waitFor(() => expect(mockSetCurrentNOE).toHaveBeenCalledTimes(1));
     expect(mockSetCurrentNOE).toHaveBeenCalledWith(15);
   });
 
   test("does not update state with invalid input", async () => {
     let input = NumberOfEventsComponent.getByRole("spinbutton");
-    await userEvent.type(input, '{selectall}abc');
+    await userEvent.type(input, "{selectall}abc");
     expect(mockSetCurrentNOE).not.toHaveBeenCalled();
   });
 
@@ -72,10 +76,7 @@ describe("<NumberOfEvents /> component", () => {
 
   test("does not update state with input greater than 32", async () => {
     let input = NumberOfEventsComponent.getByRole("spinbutton");
-    await userEvent.type(input, '33');
+    await userEvent.type(input, "33");
     expect(mockSetCurrentNOE).not.toHaveBeenCalled();
   });
-
-
-
 });

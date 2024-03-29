@@ -1,5 +1,5 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { render, waitFor, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import NumberOfEvents from "../components/NumberOfEvents";
 
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
@@ -9,7 +9,7 @@ defineFeature(feature, (test) => {
   const setCurrentNOE = jest.fn();
   beforeEach(async () => {
     NoeComponent = render(
-      <NumberOfEvents currentNOE={32} setCurrentNOE={setCurrentNOE} />
+      <NumberOfEvents currentNOE={32} setCurrentNOE={setCurrentNOE} setErrorAlert={() => {}} />
     );
   });
 
