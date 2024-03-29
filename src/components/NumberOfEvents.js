@@ -47,6 +47,7 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
 NumberOfEvents.propTypes = {
   currentNOE: PropTypes.number.isRequired,
   setCurrentNOE: PropTypes.func.isRequired,
+  setErrorAlert: PropTypes.func.isRequired,
 };
 
 export default NumberOfEvents;
