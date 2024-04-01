@@ -5,9 +5,10 @@ import CitySearch from "./components/CitySearch";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
 import { useState, useEffect, useCallback } from "react";
-import { InfoAlert, ErrorAlert } from "./components/Alert";
+import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
 
 import "./App.css";
+// import { set } from "nprogress";
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -15,7 +16,7 @@ const App = () => {
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
-  // const [warningAlert, setWarningAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
 
   const fetchData = useCallback(async () => {
@@ -36,14 +37,19 @@ const App = () => {
   }, [currentCity, currentNOE]);
 
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("you are offline, events are loaded from cache");
+    }
     fetchData();
-  }, [fetchData]);
+  }, [currentCity, currentNOE, fetchData]);
 
   return (
     <div className="App">
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
-        {/* {warningAlert.length ? <WarningAlert text={warningAlert} /> : null} */}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
