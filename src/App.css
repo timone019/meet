@@ -108,6 +108,8 @@ input[type="number"] {
 .charts-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  background-color: rgb(213, 243, 242);
+
 }
 
 @media (max-width: 768px) {
