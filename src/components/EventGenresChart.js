@@ -54,13 +54,15 @@ const renderCustomizedLabel = ({
 
   return (
     <ResponsiveContainer width="99%" height={400}>
-      <PieChart>
+      <PieChart width={730} height={250}>
         <Pie
           data={data}
           dataKey="value"
           labelLine={false}
           label={renderCustomizedLabel}
-          outerRadius={130}
+          cx="50%"
+          cy="50%"
+          outerRadius={150}
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
