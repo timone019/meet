@@ -25,12 +25,6 @@ describe("<Event /> component", () => {
     ).toBeInTheDocument();
   });
 
-  // test("renders event created date", () => {
-  //   const createdDate = new Date(allEvents[0].created).toLocaleDateString();
-  //   expect(
-  //     EventComponent.queryByText(createdDate)).toBeInTheDocument();
-  // });
-
   test("renders event location", () => {
     expect(
       EventComponent.queryByText(allEvents[0].location)
@@ -51,7 +45,6 @@ describe("<Event /> component", () => {
   });
 
   test("show the details section when the user clicks on the 'show details' button", async () => {
-    //   const user = userEvent.setup();
     const button = EventComponent.queryByRole("button");
     userEvent.click(button);
     await waitFor(() => {
@@ -61,7 +54,6 @@ describe("<Event /> component", () => {
   });
 
   test("renders event details button with the title (hide details) after click", async () => {
-    // const user = userEvent.click;
     const button = EventComponent.queryByRole("button");
     userEvent.click(button);
     await waitFor(() => {

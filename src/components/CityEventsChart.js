@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import PropTypes from "prop-types";
 
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
@@ -59,6 +60,11 @@ const CityEventsChart = ({ allLocations, events }) => {
       </ScatterChart>
     </ResponsiveContainer>
   );
+};
+
+CityEventsChart.propTypes = {
+  allLocations: PropTypes.array.isRequired,
+  events: PropTypes.array.isRequired,
 };
 
 export default CityEventsChart;

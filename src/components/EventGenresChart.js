@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend, Tooltip } from "recharts";
+import PropTypes from "prop-types";
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
@@ -30,7 +31,6 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
 }) => {
   const RADIAN = Math.PI / 180;  
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -74,5 +74,10 @@ const renderCustomizedLabel = ({
     </ResponsiveContainer>
   );
 };
+
+EventGenresChart.propTypes = {
+  events: PropTypes.array.isRequired,
+};
+
 
 export default EventGenresChart;

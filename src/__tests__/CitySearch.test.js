@@ -183,21 +183,4 @@ describe("<CitySearch /> component", () => {
     expect(mockSetCurrentCity).toHaveBeenCalledWith(suggestionToClick);
   });
 
-  // test("hides the suggestions list when the textbox loses focus", async () => {
-  //   const user = userEvent.setup();
-  //   const cityTextBox = CitySearchComponent.queryByRole("textbox");
-  //   await user.click(cityTextBox); // to gain focus
-  //   await user.tab(); // to lose focus
-  //   // Add a delay to ensure any asynchronous operations have completed
-  //   await new Promise((r) => setTimeout(r, 1000));
-  //   const suggestionList = CitySearchComponent.queryByRole("list");
-  //   expect(suggestionList).not.toBeInTheDocument();
-  // });
-
-  // test("updates the suggestions list when the allLocations prop changes", async () => {
-  //   const newAllLocations = ["Paris", "New York"];
-  //   CitySearchComponent.rerender(<CitySearch allLocations={newAllLocations} setCurrentCity={mockSetCurrentCity} />);
-  //   const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
-  //   expect(suggestionListItems).toHaveLength(newAllLocations.length + 1);
-  // });
 });

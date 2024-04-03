@@ -10,7 +10,6 @@ import { useState, useEffect, useCallback } from "react";
 import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
 
 import "./App.css";
-// import { set } from "nprogress";
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -33,8 +32,7 @@ const App = () => {
         currentNOE !== null && currentNOE !== undefined ? currentNOE : 32
       )
     );
-    // setEvents(filteredEvents.slice(0, currentNOE || 32));
-    // setEvents(filteredEvents.slice(0, isNaN(currentNOE) ? 32 : currentNOE));
+ 
     setAllLocations(extractLocations(allEvents));
   }, [currentCity, currentNOE]);
 
