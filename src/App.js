@@ -1,5 +1,6 @@
 // src/App.js
 
+import EventGenresChart from "./components/EventGenresChart";
 import CityEventsChart from "./components/CityEventsChart";
 import EventList from "./components/EventList";
 import CitySearch from "./components/CitySearch";
@@ -57,7 +58,10 @@ const App = () => {
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
-      <CityEventsChart allLocations={allLocations} events={events} />
+      <div className="charts-container">
+        <EventGenresChart events={events} />
+        <CityEventsChart allLocations={allLocations} events={events} />
+      </div>
       <EventList events={events} data-testid="event-list" />
     </div>
   );
