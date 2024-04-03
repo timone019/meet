@@ -1,7 +1,7 @@
 // src/components/EventGenresChart.js
 
 import { useState, useEffect } from "react";
-import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Cell, Legend, Tooltip } from "recharts";
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
@@ -69,6 +69,7 @@ const renderCustomizedLabel = ({
           ))}
         </Pie>
         <Legend layout="horizontal" align="center" verticalAlign="bottom" />
+        <Tooltip cursor={{ strokeDasharray: "3 3" }}/>
       </PieChart>
     </ResponsiveContainer>
   );
