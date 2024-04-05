@@ -1,12 +1,20 @@
 // src/components/CitySearch.js
 
 import { useState, useEffect } from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
 import PropTypes from "prop-types";
-// import { set } from "nprogress";
+
 const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+
+  const ref = useOnclickOutside(() => {
+    if (expanded) {
+    setExpanded(false);
+    }
+  });
 
   useEffect(() => {
     setSuggestions(allLocations || []);
@@ -42,15 +50,19 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   return (
     <div id="city-search">
       <input
+        ref={ref}
         id="city"
         type="text"
         className="city"
         placeholder="Search for a city"
         value={query}
-        onFocus={() => setShowSuggestions(true)}
+        onFocus={() => {
+          setShowSuggestions(true);
+          setExpanded(true);
+        }}
         onChange={handleInputChanged}
       />
-      {showSuggestions && (
+      {showSuggestions && expanded && (
         <ul className="suggestions">
           {suggestions.map((suggestion) => {
             return <li onClick={handleItemClicked} key={suggestion}>{suggestion}</li>;
