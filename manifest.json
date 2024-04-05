@@ -1,28 +1,28 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "The Link",
+  "name": "The Link App",
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
+      "src": "LinkLogo48px.jpg",
+      "type": "image/jpg",
       "sizes": "48x48",
       "purpose": "maskable"
     },
     {
-      "src": "meet-app-144.png",
-      "type": "image/png",
+      "src": "LinkLogo144px.jpg",
+      "type": "image/jpg",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
-      "src": "meet-app-192.png",
-      "type": "image/png",
+      "src": "LinkLogo192px.jpg",
+      "type": "image/jpg",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "meet-app-512.png",
-      "type": "image/png",
+      "src": "LinkLogo512px.jpg",
+      "type": "image/jpg",
       "sizes": "512x512",
       "purpose": "maskable"
     }
