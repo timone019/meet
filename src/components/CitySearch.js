@@ -10,8 +10,8 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [expanded, setExpanded] = useState(false);
 
-  const ref = useOnclickOutside(() => {
-    if (expanded) {
+  const ref = useOnclickOutside((e) => {
+    if (expanded && !e.target.classList.contains("suggestions")) {
     setExpanded(false);
     }
   });
@@ -40,6 +40,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   };
 
   const handleItemClicked = (event) => {
+    // event.stopPropagation();
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); // to hide the list
@@ -48,9 +49,8 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   };
 
   return (
-    <div id="city-search">
+    <div id="city-search" ref={ref}>
       <input
-        ref={ref}
         id="city"
         type="text"
         className="city"
@@ -60,6 +60,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
           setShowSuggestions(true);
           setExpanded(true);
         }}
+        onBlur={() => { setTimeout (()=> setExpanded(false), 100);}}
         onChange={handleInputChanged}
       />
       {showSuggestions && expanded && (
