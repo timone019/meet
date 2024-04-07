@@ -6,7 +6,7 @@ In the Meet app, serverless functions will be used to handle requests and respon
 
 ## Key Features
 
-- **Serverless:** This means the application can scale automatically and you only pay for what you use.
+- **Serverless:** This means the application can scale automatically and you only pay for what you use. 
 - **Progressive Web Application (PWA):** This type of application can work offline, can be installed on a user's device, and progressively improves with the user's device capabilities/network connection.
 - **React:** A popular JavaScript library for building user interfaces, especially single page applications.
 - **Test-Driven Development (TDD):** A development technique where you must first write a test that fails before you write new functional code.
@@ -14,6 +14,8 @@ In the Meet app, serverless functions will be used to handle requests and respon
 ## Integration
 
 The application integrates with the **Google Calendar API** to fetch upcoming events.
+
+**Serverless provider: AWS Lambda.**
 
 
 | Feature                        | User Role         | User Action                                                  | User Goal                                                                 |
