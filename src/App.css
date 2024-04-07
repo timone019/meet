@@ -103,6 +103,7 @@ input[type="number"] {
   border-radius: 8px;
   outline: none;
   cursor: pointer;
+  color: black;
   background-image: var(--primary-color);
   transition: background-image 0.3s ease;
   font-size: 14px;
