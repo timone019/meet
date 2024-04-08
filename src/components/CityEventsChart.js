@@ -16,19 +16,19 @@ const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setData(getData()); // eslint-disable-next-line
-  }, [`${events}`]);
 
-  const getData = () => {
-    const data = allLocations.map((location) => {
-      const count = events.filter(
-        (event) => event.location === location
-      ).length;
-      const city = location.split(/, | - /)[0];
-      return { city, count };
-    });
-    return data;
-  };
+    
+      const data = allLocations.map((location) => {
+        const count = events.filter(
+          (event) => event.location === location
+        ).length;
+        const city = location.split(/, | - /)[0];
+        return { city, count };
+      });
+   
+
+    setData(data);
+  }, [events, allLocations]);
 
   return (
     <ResponsiveContainer width="99%" height={400}>
