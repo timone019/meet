@@ -4,22 +4,22 @@ import { useState, useEffect } from "react";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend, Tooltip } from "recharts";
 import PropTypes from "prop-types";
 
+const genres = ["React", "JavaScript", "Node", "jQuery", "Angular"];
+
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
-  const genres = ["React", "JavaScript", "Node", "jQuery", "Angular"];
 
   useEffect(() => {
 
-    const data = genres.map((genre) => {
-      const filteredEvents = events.filter((event) =>
+    const data = genres.map(genre => {
+      const filteredEvents = events.filter(event =>
         event.summary.includes(genre)
       );
       return { name: genre, value: filteredEvents.length };
   });
+
     setData(data);
-  }, [events, genres]);
-
-
+  }, [events]);
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
