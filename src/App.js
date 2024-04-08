@@ -8,7 +8,6 @@ import NumberOfEvents from "./components/NumberOfEvents";
 import { extractLocations, getEvents } from "./api";
 import { useState, useEffect, useCallback } from "react";
 import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
-
 import "./App.css";
 
 const App = () => {
@@ -47,7 +46,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>The Link</h1>
+      <header className="App-header">
+        <img src={process.env.PUBLIC_URL +"/LinkLogo96px.jpg"} className="App-logo" alt="logo" />
+        <h1>The Link</h1>
+      </header>
+
+      <main>
       <h2>Pick your city</h2>
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
@@ -61,6 +65,7 @@ const App = () => {
         <CityEventsChart allLocations={allLocations} events={events} />
       </div>
       <EventList events={events} data-testid="event-list" />
+      </main>
     </div>
   );
 };

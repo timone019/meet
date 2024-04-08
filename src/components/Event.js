@@ -17,11 +17,12 @@ const Event = ({ event }) => {
       <p>Time: {start} - {end}</p>
       {showDetails && (
         <>
-          <h4>Event Details</h4>
-
-          <p className="details">{event?.description}</p>
+        <div className="details-container">
+        <p className="details">{event?.description}</p>
+        </div>
         </>
       )}
+      <br />
       <button
         className="details-btn"
         onClick={() => setShowDetails(!showDetails)}
