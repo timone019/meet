@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend, Tooltip } from "recharts";
 import PropTypes from "prop-types";
 
-const EventGenresChart = ({ events, genres }) => {
+const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ["React", "JavaScript", "Node", "jQuery", "Angular"];
 
