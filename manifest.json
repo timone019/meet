@@ -4,25 +4,25 @@
   "icons": [
     {
       "src": "LinkLogo48px.png",
-      "type": "image/jpg",
+      "type": "image/png",
       "sizes": "48x48",
       "purpose": "maskable"
     },
     {
       "src": "LinkLogo144px.png",
-      "type": "image/jpg",
+      "type": "image/png",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
       "src": "LinkLogo192px.png",
-      "type": "image/jpg",
+      "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
       "src": "LinkLogo512px.png",
-      "type": "image/jpg",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     }
