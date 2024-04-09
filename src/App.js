@@ -47,7 +47,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={process.env.PUBLIC_URL +"/LinkLogo96px.jpg"} className="App-logo" alt="logo" />
+        <img src={process.env.PUBLIC_URL +"/LinkLogo96px.png"} className="App-logo" alt="logo" />
         <h1>The Link</h1>
       </header>
 
