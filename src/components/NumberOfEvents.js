@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import PropTypes from "prop-types";
-// import EventList from "./EventList";
 
 const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
   const [numberOfEvents, setNumberOfEvents] = useState(currentNOE);
@@ -37,9 +36,6 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
         className="number-of-events"
         onChange={handleInputChanged}
       />
-
-    {/* <EventList numberOfEvents={numberOfEvents} /> */}
-     
     </div>
   );
 };

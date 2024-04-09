@@ -40,7 +40,6 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   };
 
   const handleItemClicked = (event) => {
-    // event.stopPropagation();
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); // to hide the list
@@ -72,7 +71,6 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
             <b>See all cities</b>
           </li>
         </ul>
-      // ) : null}
       )}
     </div>
   );
