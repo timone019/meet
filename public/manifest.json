@@ -3,25 +3,25 @@
   "name": "The Link App",
   "icons": [
     {
-      "src": "LinkLogo48px.jpg",
+      "src": "LinkLogo48px.png",
       "type": "image/jpg",
       "sizes": "48x48",
       "purpose": "maskable"
     },
     {
-      "src": "LinkLogo144px.jpg",
+      "src": "LinkLogo144px.png",
       "type": "image/jpg",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
-      "src": "LinkLogo192px.jpg",
+      "src": "LinkLogo192px.png",
       "type": "image/jpg",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "LinkLogo512px.jpg",
+      "src": "LinkLogo512px.png",
       "type": "image/jpg",
       "sizes": "512x512",
       "purpose": "maskable"
