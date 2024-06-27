@@ -6,7 +6,7 @@ In the Meet app, serverless functions will be used to handle requests and respon
 
 ## Key Features
 
-- **Serverless:** This means the application can scale automatically and you only pay for what you use. 
+- **Serverless:** This means the application can scale automatically and you only pay for what you use.
 - **Progressive Web Application (PWA):** This type of application can work offline, can be installed on a user's device, and progressively improves with the user's device capabilities/network connection.
 - **React:** A popular JavaScript library for building user interfaces, especially single page applications.
 - **Test-Driven Development (TDD):** A development technique where you must first write a test that fails before you write new functional code.
@@ -17,19 +17,60 @@ The application integrates with the **Google Calendar API** to fetch upcoming ev
 
 **Serverless provider: AWS Lambda.**
 
+| Feature                     | User Role      | User Action                                                    | User Goal                                                                |
+| --------------------------- | -------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Event Details Visibility    | Event Attendee | I should be able to show/hide event details                    | I can focus on the information that is most relevant to me               |
+| Event Number Specification  | Event Attendee | I should be able to specify the number of events I want to see | I can manage the amount of information displayed based on my preferences |
+| Offline Usage               | Event Attendee | I should be able to use the app when offline                   | I can access event information even without an internet connection       |
+| App Shortcut Addition       | Event Attendee | I should be able to add an app shortcut to the home screen     | I can quickly access the event app without navigating through other apps |
+| Event Details Visualization | Event Attendee | I should be able to display charts visualizing event details   | I can easily understand and analyze event data in a graphical format     |
 
-| Feature                        | User Role         | User Action                                                  | User Goal                                                                 |
-|--------------------------------|-------------------|--------------------------------------------------------------|---------------------------------------------------------------------------|
-| Event Details Visibility       | Event Attendee    | I should be able to show/hide event details                 | I can focus on the information that is most relevant to me                |
-| Event Number Specification     | Event Attendee    | I should be able to specify the number of events I want to see | I can manage the amount of information displayed based on my preferences |
-| Offline Usage                  | Event Attendee    | I should be able to use the app when offline                | I can access event information even without an internet connection        |
-| App Shortcut Addition          | Event Attendee    | I should be able to add an app shortcut to the home screen  | I can quickly access the event app without navigating through other apps  |
-| Event Details Visualization    | Event Attendee    | I should be able to display charts visualizing event details | I can easily understand and analyze event data in a graphical format      |
-
-| Role              | Action                                                       | Benefit                                                         |
-|-------------------|--------------------------------------------------------------|-----------------------------------------------------------------|
-| As an event attendee | I should be able to show/hide event details                 | so that I can focus on the information that is most relevant to me. |
+| Role                 | Action                                                         | Benefit                                                                           |
+| -------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| As an event attendee | I should be able to show/hide event details                    | so that I can focus on the information that is most relevant to me.               |
 | As an event attendee | I should be able to specify the number of events I want to see | so that I can manage the amount of information displayed based on my preferences. |
-| As an event attendee | I should be able to use the app when offline                | so that I can access event information even without an internet connection. |
-| As an event attendee | I should be able to add an app shortcut to the home screen  | so that I can quickly access the event app without navigating through other apps. |
-| As an event attendee | I should be able to display charts visualizing event details | so that I can easily understand and analyze event data in a graphical format. |
+| As an event attendee | I should be able to use the app when offline                   | so that I can access event information even without an internet connection.       |
+| As an event attendee | I should be able to add an app shortcut to the home screen     | so that I can quickly access the event app without navigating through other apps. |
+| As an event attendee | I should be able to display charts visualizing event details   | so that I can easily understand and analyze event data in a graphical format.     |
+
+## Setup
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/meet-app.git
+
+   ```
+
+2. **Navigate to the project directory**:
+
+   ```bash
+   cd meet-app
+
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   npm install
+
+   ```
+
+4. **Create a .env file in the root directory of your project and add your Google Calendar API credentials:**
+   ```bash
+   REACT_APP_CLIENT_ID=your_google_client_id
+   REACT_APP_API_KEY=your_google_api_key
+   REACT_APP_CALENDAR_ID=your_calendar_id
+
+5. **Run the app locally:**
+   ```bash
+   npm start
+
+6. **Build the app:**
+   ```bash
+   npm run build
+
+7. **Deploy the app:**
+   - You can deploy the app using any static site hosting service like Netlify, Vercel, or GitHub Pages.
+  
+   - For serverless functions, deploy them using AWS Lambda or any other serverless provider.
